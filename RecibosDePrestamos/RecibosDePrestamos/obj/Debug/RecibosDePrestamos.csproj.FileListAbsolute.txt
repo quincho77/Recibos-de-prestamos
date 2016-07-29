@@ -1,0 +1,10 @@
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\bin\Debug\RecibosDePrestamos.dll
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\bin\Debug\RecibosDePrestamos.pdb
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\bin\Debug\RecibosDePrestamos.dll.manifest
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\bin\Debug\RecibosDePrestamos.vsto
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\obj\Debug\RecibosDePrestamos.Properties.Resources.resources
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\obj\Debug\RecibosDePrestamos.csproj.GenerateResource.Cache
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\obj\Debug\RecibosDePrestamos.dll
+C:\Users\QUINCHO\Desktop\RecibosDePrestamos\RecibosDePrestamos\obj\Debug\RecibosDePrestamos.pdb
