@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class Form1
+    partial class frmRecibos
     {
         /// <summary>
         /// Variable del diseñador requerida.
