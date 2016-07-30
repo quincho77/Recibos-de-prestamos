@@ -15,6 +15,7 @@ namespace GUI
         public frmRecibos()
         {
             InitializeComponent();
-        }
+        }     
+
     }
 }
