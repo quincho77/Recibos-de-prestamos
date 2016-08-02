@@ -36,6 +36,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnVerExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label11
@@ -104,9 +105,21 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(133, 22);
             this.dateTimePicker1.TabIndex = 7;
             // 
+            // btnVerExcel
+            // 
+            this.btnVerExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerExcel.Location = new System.Drawing.Point(279, 224);
+            this.btnVerExcel.Name = "btnVerExcel";
+            this.btnVerExcel.Size = new System.Drawing.Size(75, 28);
+            this.btnVerExcel.TabIndex = 8;
+            this.btnVerExcel.Text = "Ver Excel";
+            this.btnVerExcel.UseVisualStyleBackColor = true;
+            this.btnVerExcel.Click += new System.EventHandler(this.btnVerExcel_Click);
+            // 
             // frmRecibos
             // 
-            this.ClientSize = new System.Drawing.Size(392, 276);
+            this.ClientSize = new System.Drawing.Size(385, 276);
+            this.Controls.Add(this.btnVerExcel);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -143,6 +156,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnVerExcel;
     }
 }
 
