@@ -7,6 +7,5 @@ C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\obj\Debug\G
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\obj\Debug\GUI.pdb
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\obj\Debug\GUI.frmRecibos.resources
-C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
-C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\bin\Debug\RecibosDePrestamos.pdb
-C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\bin\Debug\Recibos.dll
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\bin\Debug\Recibos.pdb

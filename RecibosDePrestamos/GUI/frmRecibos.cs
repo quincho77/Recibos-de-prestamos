@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Recibos;
 
 namespace GUI
 {
@@ -20,6 +20,8 @@ namespace GUI
 
         private void btnVerExcel_Click(object sender, EventArgs e)
         {
+            ExportarAExcel objeto = new ExportarAExcel();
+            objeto.startUp();
         }// fin del metodo btnVerExcel
 
     }
