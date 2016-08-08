@@ -12,3 +12,11 @@ C:\Users\QUINCHO\Desktop\Recibos-de-prestamos\RecibosDePrestamos\GUI\bin\Debug\R
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\GUI.exe.config
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\obj\Debug\GUI.exe
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\obj\Debug\GUI.pdb
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\obj\Debug\GUI.frmRecibos.resources
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\obj\Debug\GUI.Properties.Resources.resources
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\GUI.exe
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\GUI.pdb
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\RecibosDePrestamos.dll
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\RecibosDePrestamos.pdb
