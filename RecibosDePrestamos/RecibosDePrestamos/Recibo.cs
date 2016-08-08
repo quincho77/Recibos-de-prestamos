@@ -12,6 +12,11 @@ namespace Recibos
         private double monto;
         private String caja;
         private DateTime fecha;
+        private double saldoAnterior;
+        private double saldoActual;
+        private double abono;
+        private int semana;
+
 
         public Recibo()
         { 
@@ -39,7 +44,25 @@ namespace Recibos
         {
             set { fecha = value; }
             get { return fecha; }
-        }// fin de la propiedad Fecha
+        }// fin de la propiedad fecha
+
+        public double SaldoAnterior
+        {
+            set { saldoAnterior = value; }
+            get { return saldoAnterior; }
+        }// fin de la propiedad saldoAnterior
+
+        public double SaldoActual
+        {
+            set { saldoActual = value; }
+            get { return saldoActual; }
+        }// fin de la propiedad SaldoActual
+
+        public double Abono
+        {
+            set { abono = value; }
+            get { return abono; }
+        }// fin de la propiedad abono
 
     }// fin de la clase Recibo
 
