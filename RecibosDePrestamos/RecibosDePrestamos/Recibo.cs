@@ -64,6 +64,12 @@ namespace Recibos
             get { return abono; }
         }// fin de la propiedad abono
 
+        public int Semana
+        {
+            set { semana = value; }
+            get { return semana;  }
+        }// fin de la propiedad fecha
+
     }// fin de la clase Recibo
 
 }// fin del namespace Recibos

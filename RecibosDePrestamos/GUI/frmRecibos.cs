@@ -34,7 +34,7 @@ namespace GUI
             objRecibo.Monto = Convert.ToDouble(txtMonto.Text);
             objRecibo.Caja = txtCaja.Text;
             objRecibo.Fecha = DateTime.Today;
-
+            objRecibo.Semana = 1;
 
             return objRecibo;
         }// fin del método obtenerDatosRecibo

@@ -11,7 +11,7 @@ namespace Recibos
     public class ExportarAExcel
     {
         // Método que inicia el Excel
-        public void startUp()
+        public void startUp(Recibo nuevoRecibo)
         {
             Microsoft.Office.Interop.Excel.Application appExcel =
                 new Microsoft.Office.Interop.Excel.Application();   // Excel
@@ -22,6 +22,9 @@ namespace Recibos
             ajustarTamanioFilas(hoja);
             ajustarAnchoEnFilas(hoja);
             ajustarBordes(hoja);
+            insertarNombre(hoja, nuevoRecibo.Nombre);
+            insertarSemana(hoja, nuevoRecibo.Semana);
+
             appExcel.Visible = true;
         }// fin del método start_Up
 
@@ -111,12 +114,71 @@ namespace Recibos
         // el recibo
         public void ajustarBordes(Worksheet hoja)
         {
-
             hoja.get_Range("A1", "B55").Borders[XlBordersIndex.xlInsideHorizontal].LineStyle = XlLineStyle.xlContinuous;
             hoja.get_Range("A2", "C54").Borders[XlBordersIndex.xlInsideVertical].LineStyle = XlLineStyle.xlContinuous;
             hoja.get_Range("D1", "E55").Borders[XlBordersIndex.xlInsideHorizontal].LineStyle = XlLineStyle.xlContinuous;
             hoja.get_Range("C2", "F54").Borders[XlBordersIndex.xlInsideVertical].LineStyle = XlLineStyle.xlContinuous;
         }// fin del método ajustarBordes
+
+        // El siguiente método inserta el nombre del cliente en el Recibo
+        public void insertarNombre(Worksheet hoja, String nombre)
+        {
+            int fila = 2;    // representa el posicionamiento de la fila en la hoja
+
+            while (fila <= 50)
+            {
+                hoja.Cells[fila, "A"] = nombre.ToUpper();
+                hoja.Cells[fila, "D"] = nombre.ToUpper();
+
+                // con las siguiente lineas damos formato a las celdas
+                hoja.get_Range("A" + fila, "D" + fila).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + fila, "D" + fila).Font.Name = "Arial";
+                hoja.get_Range("A" + fila, "D" + fila).HorizontalAlignment =
+                    Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+                if (fila == 50)   // el último recibo
+                    hoja.Range["D" + fila].Font.Italic = true;
+
+                fila = fila + 6;  // incremento
+            }// fin del while
+        }// fin del método insertarNombre
+
+        // El siguiente método inserta el numero de la semana del prestamo
+        // en el recibo
+        public void insertarSemana(Worksheet hoja, int semana)
+        {
+            int fila = 2;   // representa el posicionamiento de la fila en la hoja
+
+            while (fila <= 50)
+            {
+                hoja.Cells[fila, "B"] = semana + " SEMANA";
+                hoja.Cells[fila, "E"] = (semana + 9) + " SEMANA";
+
+                // con las siguiente lineas damos formato a las celdas
+                hoja.get_Range("E" + fila).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("E" + fila).Font.Name = "Arial";
+                hoja.get_Range("E" + fila).HorizontalAlignment =
+                    Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+                fila = fila + 6;
+                semana++;
+            }// fin del while
+
+        }// fin del método insertarSemana
+
+
+        // Existe un recibo que se toma en cuenta deoendiendo del día de la 
+        // semana solo si el día de la semana es Martes el recibo, no es tomado
+        // de igual manera este recibo siempre lleva un formato especial.
+        // El siguiente método crea y da formato a ese recibo
+        public void crearReciboParcial(Worksheet hoja)
+        {
+            
+        }// fin del método crearReciboParcial
+
+
+
+
 
         // DE ESTE BLOQUE DE CÓDIGO EN ADELANTE SE ESCRIBEN LOS MÉTODOS QUE SON
         // INVOCADOS POR EL MÉTODO ajustarFilas
