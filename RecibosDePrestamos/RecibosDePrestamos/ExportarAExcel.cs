@@ -24,6 +24,7 @@ namespace Recibos
             ajustarBordes(hoja);
             insertarNombre(hoja, nuevoRecibo.Nombre);
             insertarSemana(hoja, nuevoRecibo.Semana);
+            insertarEtiquetas(hoja);
 
             appExcel.Visible = true;
         }// fin del método start_Up
@@ -162,21 +163,93 @@ namespace Recibos
 
                 fila = fila + 6;
                 semana++;
+
+                if (fila == 50)
+                { 
+                }// fin del if
             }// fin del while
 
         }// fin del método insertarSemana
 
-
-        // Existe un recibo que se toma en cuenta deoendiendo del día de la 
-        // semana solo si el día de la semana es Martes el recibo, no es tomado
-        // de igual manera este recibo siempre lleva un formato especial.
-        // El siguiente método crea y da formato a ese recibo
-        public void crearReciboParcial(Worksheet hoja)
+        // El siguiente método inserta las etiquetas Fecha, Saldo Anterior, Abono,
+        // Saldo Actual en el Recibo
+        public void insertarEtiquetas(Worksheet hoja)
         {
-            
+            int fila = 3; // representa el posicionamiento de la fila en la hoja
+
+            while (fila <= 51)
+            {
+                hoja.Cells[fila, "A"] = "Fecha";   
+                hoja.Cells[fila, "D"] = "Fecha";
+
+                hoja.Cells[fila + 1, "A"] = "Saldo Anterior";
+                hoja.Cells[fila + 1, "D"] = "Saldo Anterior";
+
+                hoja.Cells[fila + 2, "A"] = "Abono";
+                hoja.Cells[fila + 2, "D"] = "Abono";
+
+                hoja.Cells[fila + 3, "A"] = "Saldo Actual";
+                hoja.Cells[fila + 3, "D"] = "Saldo Actual";
+
+                // con las siguiente lineas damos formato a las celdas
+                hoja.get_Range("A" + fila, "D" + fila).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + fila, "D" + fila).Font.Name = "Arial";
+
+                hoja.get_Range("A" + (fila + 1), "D" + (fila + 1)).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + (fila + 1), "D" + (fila + 1)).Font.Name = "Arial";
+
+                hoja.get_Range("A" + (fila + 2), "D" + (fila + 2)).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + (fila + 2), "D" + (fila + 2)).Font.Name = "Arial";
+
+                hoja.get_Range("A" + (fila + 3), "D" + (fila + 3)).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + (fila + 3), "D" + (fila + 3)).Font.Name = "Arial";
+
+                fila = fila + 6;
+            }// fin del while
+        }// fin del método insertarEtiquetas
+
+
+
+        // Existe un recibo que se toma en cuenta dependiendo del día de la 
+        // semana, solo si el día de la semana es Martes el recibo no es tomado
+        // de igual manera este recibo siempre lleva un formato especial.
+        // El siguiente método crea y da formato a ese recibo.
+        public void calcularReciboParcial(Worksheet hoja, String fecha)
+        {
+            int parcial;
+
+            switch (fecha)
+            {
+                case "Monday":    // si el dia es lunes se rebajan 1 parcial(un día)
+                    parcial = 1;        
+                    break;
+
+                case "Tuesday":  // si es miercoles se rebajan 7 parciles(7 días)
+                    parcial = 7;
+                    break;
+
+                case "Wednesday":  // si es miercoles se rebajan 6 parciles(6 días)
+                    parcial = 6;
+                    break;
+
+                case "Thursday":  // si es miercoles se rebajan 5 parciles(5 días)
+                    parcial = 5;
+                    break;
+
+                case "Friday": // si es miercoles se rebajan 4 parciles(4 días)
+                    parcial = 4;
+                    break;
+
+                case "Saturday": // si es miercoles se rebajan 3 parciles(3 días)
+                    parcial = 3;
+                    break;
+
+                case "Sunday":  // si es miercoles se rebajan 2 parciles(2 días)
+                    parcial = 2;
+                    break;
+            }// fin del switch
+
         }// fin del método crearReciboParcial
-
-
 
 
 
