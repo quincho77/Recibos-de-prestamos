@@ -20,3 +20,5 @@ C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\GUI.pdb
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\RecibosDePrestamos.dll
 C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\RecibosDePrestamos.pdb
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\QUINCHO\Desktop\Recibos-de-prestamos2\RecibosDePrestamos\GUI\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll

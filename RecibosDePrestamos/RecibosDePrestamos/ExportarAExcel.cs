@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+
 using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 
@@ -23,9 +25,9 @@ namespace Recibos
             ajustarAnchoEnFilas(hoja);
             ajustarBordes(hoja);
             insertarNombre(hoja, nuevoRecibo.Nombre);
-            insertarSemana(hoja, nuevoRecibo.Semana);
+            insertarSemana(hoja, nuevoRecibo.Semana, nuevoRecibo.Fecha);
             insertarEtiquetas(hoja);
-
+            
             appExcel.Visible = true;
         }// fin del método start_Up
 
@@ -146,7 +148,7 @@ namespace Recibos
 
         // El siguiente método inserta el numero de la semana del prestamo
         // en el recibo
-        public void insertarSemana(Worksheet hoja, int semana)
+        public void insertarSemana(Worksheet hoja, int semana, DateTime fecha)
         {
             int fila = 2;   // representa el posicionamiento de la fila en la hoja
 
@@ -161,12 +163,18 @@ namespace Recibos
                 hoja.get_Range("E" + fila).HorizontalAlignment =
                     Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
+                if (fila == 50)
+                {
+                    hoja.Cells[fila, "E"] = calcularReciboParcial(
+                        fecha.ToString("dddd")) + " PARCIALES";
+
+                    // formto de celda
+                    hoja.get_Range("E" + fila).Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                    hoja.get_Range("E" + fila).Font.Bold = true;
+                }// fin del if
+
                 fila = fila + 6;
                 semana++;
-
-                if (fila == 50)
-                { 
-                }// fin del if
             }// fin del while
 
         }// fin del método insertarSemana
@@ -214,9 +222,9 @@ namespace Recibos
         // semana, solo si el día de la semana es Martes el recibo no es tomado
         // de igual manera este recibo siempre lleva un formato especial.
         // El siguiente método crea y da formato a ese recibo.
-        public void calcularReciboParcial(Worksheet hoja, String fecha)
+        public int calcularReciboParcial(String fecha)
         {
-            int parcial;
+            int parcial = 0;
 
             switch (fecha)
             {
@@ -249,6 +257,7 @@ namespace Recibos
                     break;
             }// fin del switch
 
+            return parcial;
         }// fin del método crearReciboParcial
 
 
