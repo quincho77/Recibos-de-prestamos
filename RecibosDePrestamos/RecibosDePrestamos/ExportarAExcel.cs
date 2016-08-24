@@ -27,7 +27,7 @@ namespace Recibos
             insertarNombre(hoja, nuevoRecibo.Nombre);
             insertarSemana(hoja, nuevoRecibo.Semana, nuevoRecibo.Fecha);
             insertarEtiquetas(hoja);
-            
+            insertarFecha(hoja, nuevoRecibo.Fecha);
             appExcel.Visible = true;
         }// fin del método start_Up
 
@@ -200,22 +200,58 @@ namespace Recibos
                 hoja.Cells[fila + 3, "D"] = "Saldo Actual";
 
                 // con las siguiente lineas damos formato a las celdas
-                hoja.get_Range("A" + fila, "D" + fila).Font.Size = 8;   // tamaño de letra de 8pt
-                hoja.get_Range("A" + fila, "D" + fila).Font.Name = "Arial";
+                hoja.get_Range("A" + fila, "E" + fila).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + fila, "E" + fila).Font.Name = "Arial";
 
-                hoja.get_Range("A" + (fila + 1), "D" + (fila + 1)).Font.Size = 8;   // tamaño de letra de 8pt
-                hoja.get_Range("A" + (fila + 1), "D" + (fila + 1)).Font.Name = "Arial";
+                hoja.get_Range("A" + (fila + 1), "E" + (fila + 1)).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + (fila + 1), "E" + (fila + 1)).Font.Name = "Arial";
 
-                hoja.get_Range("A" + (fila + 2), "D" + (fila + 2)).Font.Size = 8;   // tamaño de letra de 8pt
-                hoja.get_Range("A" + (fila + 2), "D" + (fila + 2)).Font.Name = "Arial";
+                hoja.get_Range("A" + (fila + 2), "E" + (fila + 2)).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + (fila + 2), "E" + (fila + 2)).Font.Name = "Arial";
 
-                hoja.get_Range("A" + (fila + 3), "D" + (fila + 3)).Font.Size = 8;   // tamaño de letra de 8pt
-                hoja.get_Range("A" + (fila + 3), "D" + (fila + 3)).Font.Name = "Arial";
+                hoja.get_Range("A" + (fila + 3), "E" + (fila + 3)).Font.Size = 8;   // tamaño de letra de 8pt
+                hoja.get_Range("A" + (fila + 3), "E" + (fila + 3)).Font.Name = "Arial";
 
                 fila = fila + 6;
             }// fin del while
         }// fin del método insertarEtiquetas
 
+        // El siguiente método inserta las fechas en cada recibo
+        private void insertarFecha(Worksheet hoja, DateTime fecha)
+        {
+            int fila = 3;   // representa el posicionamiento de la fila en la hoja
+            int parcial = calcularReciboParcial(fecha.ToString("dddd"));
+
+            if (parcial != 0)
+            {
+                hoja.Cells[51, "E"] = fecha.ToString("dd-MMM-yy");
+                fecha = fecha.AddDays(parcial);
+                hoja.get_Range("E51").HorizontalAlignment =
+                    Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            }// fin del if 
+
+            while (fila <= 51)
+            {
+                hoja.Cells[fila, "B"] = fecha.ToString("dd-MMM-yy");
+                hoja.get_Range("B" + fila).HorizontalAlignment =
+                    Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+                fecha = fecha.AddDays(7);
+                fila = fila + 6;
+            }// fin del while
+
+            fila = 3;   // representa el posicionamiento de la fila en la hoja
+
+            while (fila <= 45)
+            {
+                hoja.Cells[fila, "E"] = fecha.ToString("dd-MMM-yy");
+                hoja.get_Range("E" + fila).HorizontalAlignment =
+                    Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+                fecha = fecha.AddDays(7);
+                fila = fila + 6;
+            }// fin del while
+        }// fin del método insertarFecha
 
 
         // Existe un recibo que se toma en cuenta dependiendo del día de la 
@@ -233,7 +269,7 @@ namespace Recibos
                     break;
 
                 case "Tuesday":  // si es miercoles se rebajan 7 parciles(7 días)
-                    parcial = 7;
+                    parcial = 0;
                     break;
 
                 case "Wednesday":  // si es miercoles se rebajan 6 parciles(6 días)
