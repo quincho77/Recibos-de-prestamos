@@ -90,6 +90,7 @@
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(133, 22);
             this.txtMonto.TabIndex = 5;
+            this.txtMonto.Leave += new System.EventHandler(this.txtMonto_Leave);
             // 
             // txtCaja
             // 

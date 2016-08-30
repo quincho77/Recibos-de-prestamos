@@ -35,8 +35,16 @@ namespace GUI
             objRecibo.Caja = txtCaja.Text;
             objRecibo.Fecha = DateTime.Today;
             objRecibo.Semana = 1;
-
             return objRecibo;
         }// fin del método obtenerDatosRecibo
-    }
+
+        
+        private void txtMonto_Leave(object sender, EventArgs e)
+        {
+            // separa miles de cientos y decimales
+            double numero = Convert.ToDouble(txtMonto.Text);
+            txtMonto.Text = string.Format("{0:N2}", numero);
+        }// fin del evento txtMonto_Leave
+
+    }// fin de la clase frmRecibos
 }
