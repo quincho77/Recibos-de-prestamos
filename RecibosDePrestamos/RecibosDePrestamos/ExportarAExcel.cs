@@ -398,7 +398,7 @@ namespace Recibos
 
                 if (objRecibo.SaldoAnterior[i] >= cuotaSemanal)
                 {
-                    if (objRecibo.SaldoAnterior[i] < (cuotaSemanal * 2))
+                    if (objRecibo.SaldoAnterior[i] < (cuotaSemanal * 2) && parcial == 0)
                     {
                         objRecibo.Abono[i] = objRecibo.SaldoAnterior[i];
                         objRecibo.SaldoActual[i] = 0.0;

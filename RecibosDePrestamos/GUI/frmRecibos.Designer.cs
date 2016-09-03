@@ -131,6 +131,7 @@
             this.Controls.Add(this.label11);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmRecibos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recibos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRecibos_FormClosing);
             this.ResumeLayout(false);
