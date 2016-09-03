@@ -12,14 +12,18 @@ namespace Recibos
         private double monto;
         private String caja;
         private DateTime fecha;
-        private double saldoAnterior;
-        private double saldoActual;
-        private double abono;
+        private double[] saldoAnterior;
+        private double[] saldoActual;
+        private double[] abono;
         private int semana;
 
 
         public Recibo()
-        { 
+        {
+            // se le da los tamaños a los arreglos
+            this.saldoAnterior = new double[18];
+            this.abono = new double[18];
+            this.saldoActual = new double[18];
         }// fin del constructor de Recibo
 
         public String Nombre
@@ -46,19 +50,19 @@ namespace Recibos
             get { return fecha; }
         }// fin de la propiedad fecha
 
-        public double SaldoAnterior
+        public double[] SaldoAnterior
         {
             set { saldoAnterior = value; }
             get { return saldoAnterior; }
         }// fin de la propiedad saldoAnterior
 
-        public double SaldoActual
+        public double[] SaldoActual
         {
             set { saldoActual = value; }
-            get { return saldoActual; }
+            get { return this.saldoActual; }
         }// fin de la propiedad SaldoActual
 
-        public double Abono
+        public double[] Abono
         {
             set { abono = value; }
             get { return abono; }

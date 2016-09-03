@@ -13,6 +13,8 @@ namespace GUI
 {
     public partial class frmRecibos : Form
     {
+        ExportarAExcel objeto;
+
         public frmRecibos()
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace GUI
         {
             Recibo objRecibo = obtenerDatosRecibo();
 
-            ExportarAExcel objeto = new ExportarAExcel();
+            objeto = new ExportarAExcel();
             objeto.startUp(objRecibo);
             //MessageBox.Show(objRecibo.Fecha.ToString("dddd"));
         }// fin del metodo btnVerExcel
@@ -37,13 +39,17 @@ namespace GUI
             objRecibo.Semana = 1;
             return objRecibo;
         }// fin del método obtenerDatosRecibo
-
         
         private void txtMonto_Leave(object sender, EventArgs e)
         {
             // separa miles de cientos y decimales
             double numero = Convert.ToDouble(txtMonto.Text);
             txtMonto.Text = string.Format("{0:N2}", numero);
+        }
+
+        private void frmRecibos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //objeto.closeUp();
         }// fin del evento txtMonto_Leave
 
     }// fin de la clase frmRecibos

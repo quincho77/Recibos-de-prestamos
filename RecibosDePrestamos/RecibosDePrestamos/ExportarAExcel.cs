@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 using Microsoft.Office.Interop.Excel;
-using System.Windows.Forms;
+
 
 namespace Recibos
 {
     public class ExportarAExcel
     {
+        Application appExcel;
+        Workbook libro;
+        Worksheet hoja;
+
         // Método que inicia el Excel
         public void startUp(Recibo nuevoRecibo)
         {
-            Microsoft.Office.Interop.Excel.Application appExcel =
-                new Microsoft.Office.Interop.Excel.Application();   // Excel
-            Workbook libro = appExcel.Workbooks.Add();   // Libro de Excel
-            Worksheet hoja = libro.Worksheets.Add();   // nueva hoja de excel
+            appExcel = new Application();   // Excel
+            libro = appExcel.Workbooks.Add();   // Libro de Excel
+            hoja = libro.Worksheets.Add();   // nueva hoja de excel
 
+            hoja.PageSetup.LeftMargin = 10.0;
+            hoja.PageSetup.RightMargin = 0.25;
             hoja.Name = "SEMANAL";
+
             ajustarTamanioFilas(hoja);
             ajustarAnchoEnFilas(hoja);
             ajustarBordes(hoja);
@@ -28,8 +34,22 @@ namespace Recibos
             insertarSemana(hoja, nuevoRecibo.Semana, nuevoRecibo.Fecha);
             insertarEtiquetas(hoja);
             insertarFecha(hoja, nuevoRecibo.Fecha);
+            calcularSaldos(hoja, nuevoRecibo);
+            insertarSaldoAnterior(hoja, nuevoRecibo);
+            insertarAbono(hoja, nuevoRecibo);
+            insertarSaldoActual(hoja, nuevoRecibo);
+
             appExcel.Visible = true;
         }// fin del método start_Up
+
+        // El siguiente método cierra las instancias de Excel
+        public void closeUp()
+        {
+            libro.Close(true, Type.Missing, Type.Missing);
+            libro = null;
+            appExcel.Quit();
+            appExcel = null;
+        }// fin del método closeUp
 
         // El siguiente método prepara el tamaño de las filas en la hoja de excel
         public void ajustarTamanioFilas(Worksheet hoja)
@@ -121,6 +141,8 @@ namespace Recibos
             hoja.get_Range("A2", "C54").Borders[XlBordersIndex.xlInsideVertical].LineStyle = XlLineStyle.xlContinuous;
             hoja.get_Range("D1", "E55").Borders[XlBordersIndex.xlInsideHorizontal].LineStyle = XlLineStyle.xlContinuous;
             hoja.get_Range("C2", "F54").Borders[XlBordersIndex.xlInsideVertical].LineStyle = XlLineStyle.xlContinuous;
+
+            hoja.get_Range("A2", "C54").Borders[XlBordersIndex.xlEdgeLeft].LineStyle = XlLineStyle.xlContinuous;
         }// fin del método ajustarBordes
 
         // El siguiente método inserta el nombre del cliente en el Recibo
@@ -253,6 +275,146 @@ namespace Recibos
             }// fin del while
         }// fin del método insertarFecha
 
+        // El siguiente método inserta el Saldo Anterior en la hoja
+        private void insertarSaldoAnterior(Worksheet hoja, Recibo objRecibo)
+        {
+            int fila = 4;   // representa el posicionamiento de la fila en la hoja
+            int parcial = calcularReciboParcial(objRecibo.Fecha.ToString("dddd"));
+            int indice = 0;   // indece para recorrer arreglos
+
+            if (parcial != 0)
+            {
+                hoja.Cells[52, "E"] = objRecibo.SaldoAnterior[indice];
+                hoja.get_Range("E52").NumberFormat = "#,##0.00";
+                indice++;
+            }// fin del if
+
+            while (fila <= 52)
+            {
+                hoja.Cells[fila, "B"] = objRecibo.SaldoAnterior[indice];
+                hoja.get_Range("B" + fila).NumberFormat = "#,##0.00";
+                fila = fila + 6;
+                indice++;
+            }// fin del while
+
+            fila = 4;   // reposicion
+
+            while (fila <= 46)
+            {
+                hoja.Cells[fila, "E"] = objRecibo.SaldoAnterior[indice];
+                hoja.get_Range("E" + fila).NumberFormat = "#,##0.00";
+                fila = fila + 6;
+                indice++;
+            }// fin del while
+
+        }// fin del método insertarSaldoAnterior
+
+
+        // El siguiente método inserta el Abono en la hoja
+        private void insertarAbono(Worksheet hoja, Recibo objRecibo)
+        {
+            int fila = 5;   // representa el posicionamiento de la fila en la hoja
+            int parcial = calcularReciboParcial(objRecibo.Fecha.ToString("dddd"));
+            int indice = 0;   // indece para recorrer arreglos
+
+            if (parcial != 0)
+            {
+                hoja.Cells[53, "E"] = objRecibo.Abono[indice];
+                hoja.get_Range("E53").NumberFormat = "#,##0.00";
+                indice++;
+            }// fin del if
+
+            while (fila <= 53)
+            {
+                hoja.Cells[fila, "B"] = objRecibo.Abono[indice];
+                hoja.get_Range("B" + fila).NumberFormat = "#,##0.00";
+                fila = fila + 6;
+                indice++;
+            }// fin del while
+
+            fila = 5;   // reposicion
+
+            while (fila <= 47)
+            {
+                hoja.Cells[fila, "E"] = objRecibo.Abono[indice];
+                hoja.get_Range("E" + fila).NumberFormat = "#,##0.00";
+                fila = fila + 6;
+                indice++;
+            }// fin del while
+        }// fin del método insertarAbono
+
+        // El siguiente método insertar el Saldo Actual en la hoja
+        private void insertarSaldoActual(Worksheet hoja, Recibo objRecibo)
+        {
+            int fila = 6;   // representa el posicionamiento de la fila en la hoja
+            int parcial = calcularReciboParcial(objRecibo.Fecha.ToString("dddd"));
+            int indice = 0;   // indece para recorrer arreglos
+
+            if (parcial != 0)
+            {
+                hoja.Cells[54, "E"] = objRecibo.SaldoActual[indice];
+                hoja.get_Range("E54").NumberFormat = "#,##0.00";
+                indice++;
+            }// fin del if
+
+            while (fila <= 54)
+            {
+                hoja.Cells[fila, "B"] = objRecibo.SaldoActual[indice];
+                hoja.get_Range("B" + fila).NumberFormat = "#,##0.00";
+                fila = fila + 6;
+                indice++;
+            }// fin del while
+
+            fila = 6;   // reposicion
+
+            while (fila <= 48)
+            {
+                hoja.Cells[fila, "E"] = objRecibo.SaldoActual[indice];
+                hoja.get_Range("E" + fila).NumberFormat = "#,##0.00";
+                fila = fila + 6;
+                indice++;
+            }// fin del while
+        }// fin del método insertarSaldoActual
+
+        // El siguiente método realiza los calculos del Saldo Anterior, Saldo Actual 
+        // Abono, para posteriormente insertarlos en la hoja
+        private void calcularSaldos(Worksheet hoja,  Recibo objRecibo)
+        {
+            objRecibo.SaldoAnterior[0] = (objRecibo.Monto * 0.2) + objRecibo.Monto;
+            double cuotaDiaria = objRecibo.Monto / 100;
+            int parcial = calcularReciboParcial(objRecibo.Fecha.ToString("dddd"));
+            double cuotaSemanal = (objRecibo.Monto * 7) / 100;
+
+            if (parcial != 0)
+                objRecibo.Abono[0] = cuotaDiaria * parcial;
+
+            else
+                objRecibo.Abono[0] = cuotaSemanal;
+
+            for (int i = 1; i < objRecibo.SaldoAnterior.Length; i++)
+            {
+                objRecibo.SaldoActual[i - 1] = objRecibo.SaldoAnterior[i - 1] - objRecibo.Abono[i - 1];
+                objRecibo.SaldoAnterior[i] = objRecibo.SaldoActual[i - 1];
+
+                if (objRecibo.SaldoAnterior[i] >= cuotaSemanal)
+                {
+                    if (objRecibo.SaldoAnterior[i] < (cuotaSemanal * 2))
+                    {
+                        objRecibo.Abono[i] = objRecibo.SaldoAnterior[i];
+                        objRecibo.SaldoActual[i] = 0.0;
+                    }// fin del if
+
+                    else
+                        objRecibo.Abono[i] = cuotaSemanal;
+                }// fin del if
+
+                else
+                {
+                    objRecibo.Abono[i] = objRecibo.SaldoAnterior[i];
+                    objRecibo.SaldoActual[i] = 0.0;
+                }// fin del else
+            }// fin del for
+        }// fin del método insertarSaldoAnterior
 
         // Existe un recibo que se toma en cuenta dependiendo del día de la 
         // semana, solo si el día de la semana es Martes el recibo no es tomado
