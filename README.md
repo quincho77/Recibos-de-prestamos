@@ -5,7 +5,7 @@ En este repositorio se desarrollará una aplicación que envía información a u
 En este repositorio se desarrollará una aplicación que envía información a una hoja de Excel, para posteriormente ser tratada desde allí o utilizarla como simple reporte. La aplicación se realizará .NET utilizando dos tipos de proyectos .NET; -Aplicación de formularios de Windows, - Biblioteca de clases.
 #### Herramientas
   Libreria Microsoft.Office.Iterop  14.0
-######Nota: Otra herramienta que funciona para los mismos fines es EPPlus
+#####Nota: Otra herramienta que funciona para los mismos fines es EPPlus
 
 ## Perspectiva del producto
 Este es un producto independiente para automatizar los procesos que actualmente se realizan manualmente en hojas de calculo con la finalidad de permtir al negocio familiar(Prestamos de gabeta) gestionar los recibos que se le entregan a los clientes como comprobante de pago. Como anteriormete se señala, esto se realiza mediante hojas de cálculo en Excel, la idea es poder generar el Excel desde una vetana de Windows.
